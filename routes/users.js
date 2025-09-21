@@ -74,6 +74,18 @@ router.put("/:id", (req, res) => {
   });
 });
 
+router.get("/:id", (req, res) => {
+  const user = users.find((u)  => {
+    return u.id === Number(req.params.id);
+  });
+
+  if(!user) {
+    return res.status(404).json({ error: "User not found" });
+  }
+
+  return res.json(user);
+});
+
 router.delete("/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const user = users.find((u) => u.id === id);

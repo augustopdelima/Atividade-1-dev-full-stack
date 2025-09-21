@@ -14,12 +14,12 @@ router.get("/", (req, res) => {
   return res.json(products);
 });
 
-router.get("/:name", (req, res) => {
-  const product = products.find((p) => {
-    return p.name.toLowerCase() === req.params.name.toLowerCase();
-  });
+router.get("/:id", (req, res) => {
+  const product = products.find((p)  => {
+    return p.id ===  Number(req.params.id);
+  })
 
-  if (!product) {
+  if(!product) {
     return res.status(404).json({ error: "Product not found" });
   }
 
